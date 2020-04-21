@@ -1,16 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
-
-/* Cholor scheme:
-
-#012340
-#023059
-#4A738C
-#F2F2F2
-#BFAE99
-
-*/
-
-
 /* Base Styles
 ********************************************************************* */
 html {
@@ -277,7 +265,7 @@ header {
 
 @media only screen and (max-height: 700px) {
 .title h1 {
-	font-size: 80px;
+	font-size: 4em;
 }
 }
 .title p {
@@ -288,7 +276,7 @@ header {
 
 @media only screen and (max-width: 500px) {
 .title h1 {
-	font-size: 65px;
+	font-size: 3.5em;
 }
 }
 .title .icon {
