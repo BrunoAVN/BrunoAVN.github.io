@@ -87,7 +87,7 @@ img {
 }  
 
 header{
-	background-image: url("media/cover.jpg");
+  background-image: url("cover.jpg");
 	background-color: rgb(110, 110, 110);
 	background-size: cover;
 	background-position: center;
@@ -96,7 +96,7 @@ header{
   transition:.4s;
   text-align: center;
   position: relative;
-  z-index: 50;
+  z-index: 0;
 }
 
 #name{
@@ -141,6 +141,7 @@ footer{
 .arrow:hover{
   color: #da6200 !important;
 }
+
 .bounce{
 	-moz-animation: bounce 2s infinite;
 	-webkit-animation: bounce 2s infinite;
@@ -157,65 +158,24 @@ footer{
 	60% {
 	  transform: translate(-50%, -15%);
 	}
-  }
+}
 
 @media screen and (min-width: 320px){
-  .col-smart-1{background: #5969A5; width: 8.33333%;}
-  .col-smart-2{background: #6B5D9D; width: 16.66667%;}
-  .col-smart-3{background: #854D91; width: 25%;}
-  .col-smart-4{background: #AD498F; width: 33.33332%;}
-  .col-smart-5{background: #CB4587; width: 41.66665%;}
-  .col-smart-6{background: #CA4546; width: 49.99998%;}
-  .col-smart-7{background: #CA7E45; width: 58.33331%;}
-  .col-smart-8{background: #CAB345; width: 66.66664%;}
-  .col-smart-9{background: #B6CA45; width: 74.99997%;}
+  .col-smart-1{width: 8.33333%;}
+  .col-smart-2{width: 16.66667%;}
+  .col-smart-3{width: 25%;}
+  .col-smart-4{width: 33.33332%;}
+  .col-smart-5{width: 41.66665%;}
+  .col-smart-6{width: 49.99998%;}
+  .col-smart-7{width: 58.33331%;}
+  .col-smart-8{width: 66.66664%;}
+  .col-smart-9{width: 74.99997%;}
   .col-smart-10{width: 83.33333%;}
   .col-smart-11{width: 91.66663%;}
-  .col-smart-12{background: #B6CA45;width: 100%;}
+  .col-smart-12{width: 100%;}
 }
 
 /* Nav Style */
-@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600');
-
-* {
-  outline: none;
-}
-
-strong {
-  font-weight: 600;
-}
-
-.page {
-  width: 100%;
-  height: 100vh;
-  background: #fdfdfd;
-  font-family: 'Encode Sans Condensed', sans-serif;
-  font-weight: 600;
-  letter-spacing: .03em;
-  color: #212121;
-}
-
-main {
-  padding: 70px 20px 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-main > div {
-  margin: auto;
-  max-width: 600px;
-}
-
-main h2 span {
-  color: #BF7497;
-}
-
-main p {
-  line-height: 1.5;
-  font-weight: 200;
-  margin: 20px 0;
-}
 
 main small {
   font-weight: 300;
@@ -227,6 +187,7 @@ main small {
   height: 100vh;
   width: 100%;
   pointer-events: none;
+  z-index: 10;
 }
 #nav-container .bg {
   position: absolute;
@@ -252,7 +213,7 @@ main small {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 1;
+  z-index: 10;
   -webkit-appearance: none;
   border: 0;
   background: transparent;
