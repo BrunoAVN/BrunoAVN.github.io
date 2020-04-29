@@ -16,7 +16,7 @@ let path = [];
 
 function setup() {
   var container = select('.container'); 
-  var canvas = createCanvas(container.size().width, 500);
+  var canvas = createCanvas(container.size().width, container.size().height * 10);
   canvas.parent('sketch-holder');
   const skip = 8;
   for (let i = 0; i < drawing.length; i += skip) {
@@ -32,7 +32,7 @@ function setup() {
 
 function windowResized() {
   var container = select('.container'); 
-  resizeCanvas(container.size().width, 500);
+  resizeCanvas(container.size().width, container.size().height * 10);
 }
 
 function epiCycles(x, y, rotation, fourier) {
