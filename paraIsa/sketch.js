@@ -15,8 +15,9 @@ let time = 0;
 let path = [];
 
 function setup() {
-  var canvas = createCanvas(800, 600);
-  canvas.parent('sketch-holder')
+  var container = select('.container'); 
+  var canvas = createCanvas(container.size().width, 500);
+  canvas.parent('sketch-holder');
   const skip = 8;
   for (let i = 0; i < drawing.length; i += skip) {
     x.push(drawing[i].x);
@@ -27,6 +28,11 @@ function setup() {
 
   fourierX.sort((a, b) => b.amp - a.amp);
   fourierY.sort((a, b) => b.amp - a.amp);
+}
+
+function windowResized() {
+  var container = select('.container'); 
+  resizeCanvas(container.size().width, 500);
 }
 
 function epiCycles(x, y, rotation, fourier) {

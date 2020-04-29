@@ -716,8 +716,9 @@ pre, blockquote, dl, figure, table, p, ul, ol, form {
 
 #sketch-holder{
 	position: relative;
-	left: 50%;
-	transform: translate(-50%, 0);
+	/* width: 50%; */
+	/* left: 50%;
+	transform: translate(-50%, 0); */
 }
 
 p{
