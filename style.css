@@ -705,3 +705,13 @@ pre, blockquote, dl, figure, table, p, ul, ol, form {
 	background: linear-gradient(45deg, #00B4FF 0%, #012340 100%%);
 	margin-bottom: 50px;
 }
+
+.paraIsa {
+	position: absolute;
+	padding: 8px 5px;
+	color: #fff;
+	text-decoration: none;
+	background-color: #5fc3e4;
+	border-color: #5fc3e4;
+	border-radius: 5px;
+  }
