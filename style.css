@@ -634,6 +634,7 @@ footer p {
 }
 .socialIcons {
 	font-size: 34px;
+	text-decoration: none;
 	color: rgba(255, 255, 255, 0.7);
 }
 /* Lists
@@ -695,6 +696,7 @@ pre, blockquote, dl, figure, table, p, ul, ol, form {
 .icon {
 	padding-right: 10px;
 	color: #00B4FF;
+	text-decoration-style: none;
 }
 .block {
 	width: 70px;

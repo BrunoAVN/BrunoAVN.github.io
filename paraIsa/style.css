@@ -282,6 +282,7 @@ a:hover {
 .title .icon {
 	color: #FFFFFF;
 	font-size: 50px;
+	text-decoration-style: none
 }
 .main_nav {
 	position: relative;
@@ -632,6 +633,7 @@ footer p {
 }
 .socialIcons {
 	font-size: 34px;
+	text-decoration: none;
 	color: rgba(255, 255, 255, 0.7);
 }
 /* Lists
