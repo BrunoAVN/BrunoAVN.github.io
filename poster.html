@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -350,7 +350,7 @@
         <div class="container">
             <a href="index.html#talks" class="back-link">
                 <i data-feather="arrow-left"></i>
-                Voltar para Talks
+                Back to Talks
             </a>
 
             <div class="poster-header">
@@ -364,11 +364,11 @@
                     <div class="control-buttons">
                         <button class="control-btn" onclick="prevPage()" id="prevBtn">
                             <i data-feather="chevron-left"></i>
-                            Anterior
+                            Previous
                         </button>
-                        <span class="page-info" id="pageInfo">Carregando...</span>
+                        <span class="page-info" id="pageInfo">Loading...</span>
                         <button class="control-btn" onclick="nextPage()" id="nextBtn">
-                            Próxima
+                            Next
                             <i data-feather="chevron-right"></i>
                         </button>
                         <button class="control-btn" onclick="downloadPDF()">
@@ -381,12 +381,12 @@
                 <div class="poster-content">
                     <div class="loading-message" id="loadingMessage">
                         <div class="loading-spinner"></div>
-                        <p>Carregando poster...</p>
+                        <p>Loading poster...</p>
                     </div>
                     <canvas id="pdfCanvas" style="display: none;"></canvas>
                     <div class="error-message" id="errorMessage" style="display: none;">
-                        <strong>Erro ao carregar o PDF:</strong>
-                        <p>Não foi possível carregar o arquivo poster.pdf. Verifique se o arquivo existe no diretório correto.</p>
+                        <strong>Error loading PDF:</strong>
+                        <p>Could not load the poster.pdf file. Please verify that the file exists in the correct directory.</p>
                     </div>
                 </div>
             </div>
@@ -436,7 +436,7 @@
         }
 
         function updatePageInfo() {
-            document.getElementById('pageInfo').textContent = `Página ${pageNum} de ${pdfDoc.numPages}`;
+            document.getElementById('pageInfo').textContent = `Page ${pageNum} of ${pdfDoc.numPages}`;
             
             // Update button states
             document.getElementById('prevBtn').disabled = pageNum <= 1;
