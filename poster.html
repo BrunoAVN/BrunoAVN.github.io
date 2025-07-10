@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster - Bruno A. Veloso</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0F172A;
+            --primary-blue: #1E293B;
+            --accent-orange: #ff612e;
+            --accent-orange-light: #FB923C;
+            --light-gray: #E2E8F0;
+            --dark-gray: #475569;
+            --white: #ffffff;
+            --gradient-bg: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            --text-light: #CBD5E1;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: #FAFAFA;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(15, 23, 42, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-logo:hover {
+            color: var(--accent-orange);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-orange-light));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            min-height: calc(100vh - 80px);
+            padding: 40px 0;
+        }
+
+        .poster-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: var(--gradient-bg);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+        }
+
+        .poster-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .poster-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: var(--text-light);
+        }
+
+        .poster-viewer {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+            overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .poster-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: var(--gradient-bg);
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .poster-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            background: var(--accent-orange-light);
+            transform: translateY(-2px);
+        }
+
+        .control-btn:disabled {
+            background: #6B7280;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-info {
+            color: var(--text-light);
+            font-weight: 600;
+            margin: 0 15px;
+        }
+
+        .poster-content {
+            padding: 30px;
+            text-align: center;
+            min-height: 600px;
+            background: #f8f9fa;
+        }
+
+        .loading-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            color: var(--dark-gray);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--accent-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #pdfCanvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.1);
+            background: white;
+        }
+
+        .error-message {
+            color: #dc2626;
+            background: #fef2f2;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #fecaca;
+            margin: 20px 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-orange-light);
+            transform: translateX(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+                z-index: 100;
+                padding: 20px 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .poster-header h1 {
+                font-size: 2rem;
+            }
+
+            .poster-controls {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .control-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .control-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .poster-content {
+                padding: 20px;
+            }
+        }
+
+        /* Feather Icons */
+        .feather {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">Bruno A. Veloso</a>
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i data-feather="menu"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="index.html#talks">Talks</a></li>
+                    <li><a href="index.html#interests">Interests</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <a href="index.html#talks" class="back-link">
+                <i data-feather="arrow-left"></i>
+                Voltar para Talks
+            </a>
+
+            <div class="poster-header">
+                <h1>Quantum Transistor in Superconducting Circuits</h1>
+                <p>SIFISC Conference - September 2021</p>
+            </div>
+
+            <div class="poster-viewer">
+                <div class="poster-controls">
+                    <h2 class="poster-title">Poster Viewer</h2>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="prevPage()" id="prevBtn">
+                            <i data-feather="chevron-left"></i>
+                            Anterior
+                        </button>
+                        <span class="page-info" id="pageInfo">Carregando...</span>
+                        <button class="control-btn" onclick="nextPage()" id="nextBtn">
+                            Próxima
+                            <i data-feather="chevron-right"></i>
+                        </button>
+                        <button class="control-btn" onclick="downloadPDF()">
+                            <i data-feather="download"></i>
+                            Download
+                        </button>
+                    </div>
+                </div>
+
+                <div class="poster-content">
+                    <div class="loading-message" id="loadingMessage">
+                        <div class="loading-spinner"></div>
+                        <p>Carregando poster...</p>
+                    </div>
+                    <canvas id="pdfCanvas" style="display: none;"></canvas>
+                    <div class="error-message" id="errorMessage" style="display: none;">
+                        <strong>Erro ao carregar o PDF:</strong>
+                        <p>Não foi possível carregar o arquivo poster.pdf. Verifique se o arquivo existe no diretório correto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        const scale = 1.5;
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+        const pdfUrl = './poster.pdf';
+
+        function renderPage(num) {
+            pageRendering = true;
+            pdfDoc.getPage(num).then(function(page) {
+                const viewport = page.getViewport({scale: scale});
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                
+                const renderTask = page.render(renderContext);
+                renderTask.promise.then(function() {
+                    pageRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                    updatePageInfo();
+                });
+            });
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        function updatePageInfo() {
+            document.getElementById('pageInfo').textContent = `Página ${pageNum} de ${pdfDoc.numPages}`;
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = pageNum <= 1;
+            document.getElementById('nextBtn').disabled = pageNum >= pdfDoc.numPages;
+        }
+
+        function prevPage() {
+            if (pageNum <= 1) return;
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+
+        function nextPage() {
+            if (pageNum >= pdfDoc.numPages) return;
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+
+        function downloadPDF() {
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = './poster.pdf';
+            link.click();
+        }
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        // Initialize PDF viewer
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            
+            pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+                pdfDoc = pdf;
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('pdfCanvas').style.display = 'block';
+                renderPage(pageNum);
+            }).catch(function(error) {
+                console.error('Error loading PDF:', error);
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('errorMessage').style.display = 'block';
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                prevPage();
+            } else if (e.key === 'ArrowRight') {
+                nextPage();
+            }
+        });
+    </script>
+</body>
+</html>

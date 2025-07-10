@@ -1,263 +1,1197 @@
 <!DOCTYPE html>
-<html lang="pt-br" >
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Bruno Augusto Veloso</title>
-  <meta name="author" content="Bruno Augusto Veloso Nunes Silva">
-  <!-- <meta name="description" content="">  -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css'>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.8/typicons.min.css'><link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno A. Veloso - Quantum Computing Researcher</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary-dark: #0F172A;
+            --primary-blue: #1E293B;
+            --accent-orange: #ff612e;
+            --accent-orange-light: #FB923C;
+            --light-gray: #E2E8F0;
+            --dark-gray: #475569;
+            --white: #ffffff;
+            --gradient-bg: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            --premium-gold: #FCD34D;
+            --text-light: #CBD5E1;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+            background: #FAFAFA;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: slideInLeft 1s ease-out 0.2s both;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 600px;
+            animation: slideInLeft 1s ease-out 0.4s both;
+            color: var(--text-light);
+        }
+
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 6px solid var(--accent-orange);
+            box-shadow: 0 25px 50px rgba(249, 115, 22, 0.3);
+            animation: slideInRight 1s ease-out 0.6s both;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent-orange);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(249, 115, 22, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border: 2px solid var(--accent-orange);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(249, 115, 22, 0.1);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-links a:hover {
+            background: var(--accent-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(249, 115, 22, 0.4);
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(15, 23, 42, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-orange-light));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+        
+        .nav-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .nav-logo {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: none;
+          background: none;
+          border: none;
+          color: var(--primary-blue);
+          cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+          .nav-links {
+            display: none;
+            flex-direction: column;
+            background: white;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+          }
+
+        .profile-image {
+          margin: 0 auto;
+        }
+
+          .nav-links.open {
+            display: flex;
+          }
+            .nav-logo {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--primary-blue);
+}
+          .menu-toggle {
+            display: block;
+          }
+
+          .nav-logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+          }
+        }
+        
+
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--primary-dark);
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-orange-light));
+            border-radius: 2px;
+        }
+
+        /* Education & Experience */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--light-gray), var(--accent-orange));
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 0%;
+            background: linear-gradient(to bottom, var(--accent-orange), var(--accent-orange-light));
+            border-radius: 2px;
+            transition: height 0.3s ease;
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            padding: 0 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent-orange);
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 2;
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+            position: relative;
+            width: 45%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+            border-color: var(--accent-orange);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .timeline-content .date {
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content .institution {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .skill-bar {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .skill-progress {
+            height: 8px;
+            background: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-orange-light));
+            border-radius: 4px;
+            transition: width 2s ease;
+            position: relative;
+        }
+
+        .skill-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: skill-shimmer 2s infinite;
+        }
+
+        @keyframes skill-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Publications */
+        .publications {
+            background: #f8f9fa;
+        }
+
+        .publication-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .publication-item h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .publication-item .journal {
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Research Interests */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .interest-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--accent-orange);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .interest-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+            border-color: var(--accent-orange);
+        }
+
+        .interest-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-orange);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quantum-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            bottom: -6px;
+            animation: quantum-float 8s infinite linear;
+            box-shadow: 0 0 6px var(--accent-orange);
+        }
+
+        @keyframes quantum-float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Feather Icons Integration */
+        .feather {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .feather-large {
+            width: 48px;
+            height: 48px;
+        }
+
+
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  background: var(--accent-orange);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+    #backToTop:hover {
+        background: var(--accent-orange-light);
+        transform: translateY(-4px);
+    }
+    </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<!-- Header Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <header>
+        <div class="header-bg"></div>
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Bruno A. Veloso</h1>
+                    <p class="subtitle">Quantum Computing Researcher</p>
+                    <p class="description">
+                        Theoretical physicist specializing in quantum computation with superconducting qubits. 
+                        Currently pursuing a Ph.D. in Quantum Computation at UFSCar, focusing on advanced 
+                        quantum circuit design and machine learning applications.
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:brunoavn@df.ufscar.br">
+                            <i data-feather="mail"></i>
+                            Contact
+                        </a>
+                        <a href="https://www.linkedin.com/in/bruno-augusto-veloso" target="_blank">
+                            <i data-feather="linkedin"></i>
+                            LinkedIn
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=UZrjV1sAAAAJ&hl=en&oi=ao" target="_blank">
+                            <i data-feather="book-open"></i>
+                            Scholar
+                        </a>
+                        <a href="https://github.com/brunoavn" target="_blank">
+                            <i data-feather="github"></i>
+                            Github
+                        </a>
+                    </div>
+                </div>
+                <div class="profile-image">
+    <img src="profile.jpg" alt="Profile photo of Bruno A. Veloso" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+                </div>
+            </div>
+        </div>
+        <!-- Quantum particles animation -->
+        <div class="quantum-particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="quantum-particle" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="quantum-particle" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="quantum-particle" style="left: 80%; animation-delay: 1s;"></div>
+        <div class="quantum-particle" style="left: 90%; animation-delay: 3s;"></div>
+    </header>
 
-<header id="header">
-  <div class="main_nav">
-    <div class="container">
-      <div class="mobile-toggle"> <span></span> <span></span> <span></span> </div>
-      <nav>
-        <ul>
-          <li><img class="smoothscroll logo-small"src="logo.svg"></li>
-          <li><a class="smoothscroll" href="#header">Home</a></li>
-          <li><a class="smoothscroll" href="#Sobre">About</a></li>
-          <li><a class="smoothscroll" href="#skills">Habilidades</a></li>
-          <li><a class="smoothscroll" href="#portfolio">Work</a></li>
-          <li><a class="smoothscroll" href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+<nav>
+  <div class="container">
+    <div class="nav-container">
+      <div class="nav-logo">Bruno A. Veloso</div>
+      <button class="menu-toggle" onclick="toggleMenu()">
+        <i data-feather="menu"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#education">Education</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#talks">Talks</a></li>
+        <li><a href="#interests">Interests</a></li>
+      </ul>
     </div>
   </div>
-  <div class="title">
-    <!-- <div><span class="typcn typcn-heart-outline icon heading"></span></div> -->
-    <div><img class="logo heading" src="logo.svg" alt="Logo"></div>
-    <div class="smallsep heading"></div>
-    <h1 class="heading"> Bruno Augusto Veloso</h1>
-    <!-- <h2 class="heading">Lorem ipsum dolor sit amet</h2> -->
-    <a class="smoothscroll" href="#about">
-    <div class="mouse">
-      <div class="wheel"></div>
+</nav>
+
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2022 - Present</div>
+                        <h3>Ph.D. in Theoretical Physics</h3>
+                        <p class="institution">Federal University of São Carlos</p>
+                        <p>Focusing on quantum computation with superconducting qubits. Researching Hamiltonian engineering techniques and neural network applications for quantum control.</p>
+                        <p><strong>Funding:</strong> CNPq Grant 140001/2023-9</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2020 - 2022</div>
+                        <h3>M.Sc. in Theoretical Physics</h3>
+                        <p class="institution">Federal University of São Carlos</p>
+                        <p><strong>Dissertation:</strong> Quantum transistor using superconducting qubits</p>
+                        <p><strong>Advisor:</strong> Celso Jorge Villas-Bôas</p>
+                        <p><strong>Funding:</strong> CAPES Grant 88887.512104/2020-00</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2015 - 2019</div>
+                        <h3>Bachelor in Physics</h3>
+                        <p class="institution">Federal University of São Carlos</p>
+                        <p><strong>Final Project:</strong> Optical bistability in two level atoms in optical cavities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="research">
+        <div class="container">
+            <h2 class="section-title">Research Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2022 - Present</div>
+                        <h3>Doctoral Research Fellow</h3>
+                        <p class="institution">Physics Graduate Program, UFSCar</p>
+                        <ul>
+                            <li>Application of Hamiltonian engineering for superconducting quantum circuits</li>
+                            <li>Neural networks and machine learning for quantum pulse optimization</li>
+                            <li>QuTiP library implementation for quantum device simulation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2020 - 2022</div>
+                        <h3>Master's Research Fellow</h3>
+                        <p class="institution">Physics Graduate Program, UFSCar</p>
+                        <ul>
+                            <li>Quantum transistor development using superconducting qubits</li>
+                            <li>Effective dynamics calculations for system optimization</li>
+                            <li>qRAM implementation studies with superconducting qubits</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2019</div>
+                        <h3>Scientific Initiation</h3>
+                        <p class="institution">São Paulo Research Foundation (FAPESP)</p>
+                        <p>Neural networks as surrogate models for partial differential equations</p>
+                        <p><strong>Funding:</strong> FAPESP Grant 19/04018-8</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>MATLAB</span>
+                            <span>64%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="width: 64%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Mathematica</span>
+                            <span>44%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="width: 44%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>LaTeX</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Machine Learning</span>
+                            <span>50%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Portuguese</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>English</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>French</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Spanish</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+        <div class="publication-item">
+<div class="journal">Physical Review Applied</div>
+<h3 style="cursor: pointer; color: var(--primary-blue);" onclick="toggleAbstract('abstract1')">
+    Native Conditional iSWAP Operation with Superconducting Artificial Atoms
+</h3>
+<p><strong>Authors:</strong> Chang-Kang Hu, Jiahao Yuan, <strong>Bruno A. Veloso</strong>, Jiawei Qiu, Yuxuan Zhou, Libo Zhang, Ji Chu, Orkesh Nurbolat, Ling Hu, Jian Li, Yuan Xu, Youpeng Zhong, Song Liu, Fei Yan, Dian Tan, R. Bachelard, Alan C. Santos, C. J. Villas-Boas, Dapeng Yu</p>
+<p><strong>Citation:</strong> PRApplied 20, 034072 (2023)</p>
+<a href="https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.034072" target="_blank" style="color: var(--accent-red); text-decoration: none;">🔗 View Publication</a>
+<div id="abstract1" style="display: none; margin-top: 15px; color: #333;">
+    <strong>Abstract:</strong><br>
+    We implement a conditional iSWAP gate using a superconducting artificial atom with a ladder-type energy structure. The gate operation is based on a third-order nonlinear process involving one control and two target qubits. The device uses an ancillary level to induce conditional population exchange between the two target qubits, achieving a native iSWAP gate with high fidelity. Our results demonstrate a scalable approach for implementing native multi-qubit gates in superconducting quantum processors.
+</div>
+</div>
+
+<div class="publication-item">
+    <div class="journal">In Writing Process</div>
+    <h3 style="cursor: pointer; color: var(--primary-blue);" onclick="toggleAbstract('abstract2')">
+        Scalable superconducting circuit for universal continuous-variable quantum computation
+    </h3>
+    <p><strong>Authors:</strong> <strong>Bruno A. Veloso</strong>, Ciro M. Diniz, Luiz O. R. Solak, Antonio S. M. de Castro, Daniel Z. Rossatto, Celso J. Villas-Bôas</p>
+    <div id="abstract2" style="display: none; margin-top: 15px; color: #333;">
+        <strong>Abstract:</strong><br>
+        Over recent decades, quantum computing has experienced significant advancements, with superconducting circuits emerging as one of the leading platforms. Within this landscape, an alternative to the traditional use of qubits and discrete gates is encoding information in the quadratures of bosonic modes—a framework known as continuous-variable (CV) quantum computation. In this approach, universal computation requires five operations: rotation, displacement, squeezing, a nonlinear effect such as Kerr interaction, and a beam-splitter operation for multimode coupling. This work proposes a scalable superconducting circuit capable of implementing all operations required for a universal CV gate set. The core of our architecture features a modular, multilayer circuit with a DC-SQUID encoding the CV mode and auxiliary qubits mediating specific interactions. Using Hamiltonian engineering techniques and numerical simulations, we identify circuit parameters that selectively activate each interaction within a range compatible with current superconducting hardware. These parameters yield fidelities exceeding 90% between the total and effective circuit Hamiltonians. One of the key challenges for achieving universality lies in generating a controllable nonlinear interaction. We address this by implementing a tunable Kerr interaction —an excitation-conserving operation— through dynamic control of the superconducting mode’s anharmonicity via an external magnetic flux. Our proposal offers a promising and experimentally viable building block for constructing large-scale CV quantum processors based on superconducting platforms due to its modular structure, high gate fidelity, and alignment with current experimental capabilities.
     </div>
-    </a> </div>
-  <a class="smoothscroll" href="#Sobre">
-  <div class="scroll-down"></div>
-  </a> </header>
-  
-<!-- About Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->  
-<section id="Sobre">
+</div>
+<div class="publication-item">
+    <div class="journal">M.Sc. Dissertation</div>
+    <h3>
+        Quantum transistor using superconducting qubits
+    </h3>
+    <p><strong>Institution:</strong> Federal University of São Carlos</p>
+    <p><strong>Author:</strong> Bruno A. Veloso</p>
+    <p><strong>Advisor:</strong> Celso J. Villas-Bôas</p>
+    <p><strong>Year:</strong> 2022</p>
+    <a href="https://repositorio.ufscar.br/items/2a94728d-e05e-4ba8-bf6e-8ef0e37be6e6" target="_blank" style="color: var(--accent-red); text-decoration: none;">📄 Access Dissertation</a>
+</div>
+
+
+            <div class="publication-item">
+                <div class="journal">Peer Review Activity</div>
+                <h3>Scientific Journal Referee</h3>
+                <p><strong>Journal:</strong> Physical Review A (2021 - Present)</p>
+                <p>Active reviewer contributing to the quantum physics community through peer review of scientific manuscripts.</p>
+            </div>
+        </div>
+    </section>
+
+
+<section id="talks">
   <div class="container">
-    <div class="row" style="height: 75px"></div>
-    <div class="row">
-      <h1>Oi Moça!</h1>
-      <div class="block"></div>
-      <p>Oi moça, seja muito bem-vinda, este é o princípio do que idealmente será meu site. Até o momento, temos
-        apenas um esqueleto, mas idealemtne, no futuro vou tentar fazer um blog ou portfólio.</p>
+    <h2 class="section-title">Talks & Presentations</h2>
+
+
+    <div class="publication-item">
+      <h3>Building Block for Universal Continuous Variables Computation in Superconducting Devices</h3>
+      <p><strong>Event:</strong> SQA Conference – Delft</p>
+      <p><strong>Date:</strong> 2025 — Poster Session in Delft, Netherlands <a href="https://abstracts.sqa-conference.org/?q=building+block+for+universal+continuous+variables+computation+in+superconducting+devices" target="_blank" style="color: var(--accent-red); text-decoration: none;">📄 View Work</a></p>
+      <p>This poster presents a scalable superconducting circuit for universal continuous-variable quantum computation, with designs compatible with current hardware and fidelities > 90% between total and effective Hamiltonians.</p>
     </div>
-    <div class="row">
-      <div class="six columns">
-        <h3><span class=" typcn typcn-heart-outline icon"></span>Leia aqui :)</h3>
-          <p>A maior parte de tudo aqui é só texto aleatório e bem desinteressante... mas tem algo especial para você
-            alí em baixo!
-          </p>
-      </div>
-      <div class="six columns">
-        <h3><span class="typcn typcn-pen icon"></span>Our Approach</h3>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-      </div>
-      <div class="row">
-        <div class="six columns">
-          <h3><span class="typcn typcn-cog-outline icon"></span>Our Goal</h3>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-        </div>
-        <div class="six columns">
-          <h3><span class=" typcn typcn-heart icon"></span>Para Isa</h3>
-          <p>
-            Este site não poderia ser completamente inútil, então, temos algo especial para você! Por favor, clique neste botão :)</p>
-            <a class='paraIsa' href="paraIsa/paraIsa.html"> PARA ISA!</a></p>
-        </div>
-      </div>
+
+    <div class="publication-item">
+      <h3>Introdução à Computação Quântica com Qiskit</h3>
+      <p><strong>Event:</strong> SPIE Chapter Minicourse</p>
+      <p><strong>Date:</strong> 2025 — <a href="https://www.youtube.com/watch?v=Dv4eqpOWxYA" target="_blank" style="color: var(--accent-red); text-decoration: none;">▶️ Watch on YouTube</a></p>
+      <p>Hands-on introduction to quantum circuits using IBM Qiskit, covering basic gates, measurements and algorithmic structure in the Qiskit platform.</p>
     </div>
+    <div class="publication-item">
+      <h3>Quantum Transistor in Superconducting Circuits</h3>
+      <p><strong>Event:</strong> UFV Graduate Symposium</p>
+      <p><strong>Date:</strong> November 2021 — <a href="https://simposiofisica.github.io/ufv2021/#a-03-trans%C3%ADstor-qu%C3%A2ntico-em-sistema-de-qubits-supercondutores-bruno-augusto-veloso" target="_blank" style="color: var(--accent-red); text-decoration: none;">📄 View Work</a></p>
+      <p>Online presentation and poster submission about the quantum transistor using superconducting qubits. The work was awarded as one of the best presented at the event.</p>
+    </div>
+
+    <div class="publication-item">
+<a href="https://indico.ifsc.usp.br/event/4/contributions/800/" target="_blank" style="hover: var(--accent-red); text-decoration: none;">    
+      <h3>Quantum Transistor in Superconducting Circuits</h3>
+</a>
+      <p><strong>Event:</strong> SIFISC Conference</p>
+      <p><strong>Date:</strong> September 2021 — <a href="poster.html" style="color: var(--accent-red); text-decoration: none;">📄 View Poster</a></p>
+      <p>Poster submission and live presentation at the SIFISC conference. The work was selected as one of the three best presented.</p>
+    </div>
+
   </div>
 </section>
 
-<!-- Team Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->  
 
-<section id="team">
-  <div class="container">
-    <div class="row">
-      <h1>Meet the Team</h1>
-      <div class="block"></div>
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    </div>
-    <div class="row">
-      <div class="three columns"> <img src="http://placehold.it/220x220" width="220" height="220" alt=""/>
-        <h4>Naruto Uzumaki</h4>
-        <p>Creative Director</p>
-        <span class="typcn typcn-social-facebook-circular icon"></span><span class="typcn typcn-social-instagram-circular icon"></span><span class="typcn typcn-social-google-plus-circular icon"></span><span class="typcn typcn-social-linkedin-circular icon"></span> </div>
-      <div class="three columns"> <img src="http://placehold.it/220x220" width="220" height="220" alt=""/>
-        <h4>Sasuke Uchiha</h4>
-        <p>Lead Designer</p>
-        <span class="typcn typcn-social-facebook-circular icon"></span><span class="typcn typcn-social-instagram-circular icon"></span><span class="typcn typcn-social-google-plus-circular icon"></span><span class="typcn typcn-social-linkedin-circular icon"></span> </div>
-      <div class="three columns"> <img src="http://placehold.it/220x220" width="220" height="220" alt=""/>
-        <h4>Shikamaru Nara</h4>
-        <p>Designer</p>
-        <span class="typcn typcn-social-facebook-circular icon"></span><span class="typcn typcn-social-instagram-circular icon"></span><span class="typcn typcn-social-google-plus-circular icon"></span><span class="typcn typcn-social-linkedin-circular icon"></span> </div>
-      <div class="three columns"> <img src="http://placehold.it/220x220" width="220" height="220" alt=""/>
-        <h4>Sakura Haruno</h4>
-        <p>Designer</p>
-        <span class="typcn typcn-social-facebook-circular icon"></span><span class="typcn typcn-social-instagram-circular icon"></span><span class="typcn typcn-social-google-plus-circular icon"></span><span class="typcn typcn-social-linkedin-circular icon"></span> </div>
-    </div>
-  </div>
-</section>
 
-<!-- Skills Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->  
-
-<section id="skills">
-  <div class="container">
-    <h1>Habilidades</h1>
-    <div class="block"></div>
-    <div class="row">
-      <div class="one-third column">
-        <h3>Física</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, recusandae, at, labore velit eligendi amet nobis repellat natus.</p>
-      </div>
-      <div class="one-third column">
-        <h3>Development</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, recusandae, at, labore velit eligendi amet nobis repellat natus.</p>
-      </div>
-      <div class="one-third column">
-        <h3>Marketing</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, recusandae, at, labore velit eligendi amet nobis repellat natus.</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="eight columns">
-        <div class="progressBar">
-          <h4>Python</h4>
-          <div class="progressBarContainer">
-            <div class="progressBarValue value-80"></div>
-          </div>
+    <section id="interests" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Research Interests</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="icon">
+                        <i data-feather="cpu" class="feather-large"></i>
+                    </div>
+                    <h3>Quantum Computation</h3>
+                    <p>Implementation of quantum computation using physical systems and development of quantum algorithms.</p>
+                </div>
+                <div class="interest-card">
+                    <div class="icon">
+                        <i data-feather="zap" class="feather-large"></i>
+                    </div>
+                    <h3>Quantum Theory Applications</h3>
+                    <p>Practical applications of quantum theoretical principles in modern technological contexts.</p>
+                </div>
+                <div class="interest-card">
+                    <div class="icon">
+                        <i data-feather="activity" class="feather-large"></i>
+                    </div>
+                    <h3>Machine Learning</h3>
+                    <p>Integration of machine learning techniques with quantum computing systems and quantum machine learning.</p>
+                </div>
+                <div class="interest-card">
+                    <div class="icon">
+                        <i data-feather="award" class="feather-large"></i>
+                    </div>
+                    <h3>Awards & Recognition</h3>
+                    <p>Best presentation awards at UFV Graduate Symposium (2021) and SIFISC Conference (2021).</p>
+                </div>
+            </div>
         </div>
-        <div class="progressBar">
-          <h4></h4>
-          <div class="progressBarContainer">
-            <div class="progressBarValue value-80"></div>
-          </div>
+    </section>
+
+    <button id="backToTop" onclick="scrollToTop()" title="Voltar ao topo">
+  <i data-feather="chevron-up" class="feather feather-large"></i>
+</button>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <a href="mailto:brunoavn@df.ufscar.br">📧 brunoavn@df.ufscar.br</a>
+                    <p>📍 São Carlos, SP - Brazil</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Academic Profiles</h3>
+                    <a href="https://www.linkedin.com/in/bruno-augusto-veloso" target="_blank">LinkedIn</a>
+                    <a href="https://orcid.org/0000-0002-5935-7413" target="_blank">ORCID</a>
+                    <a href="https://scholar.google.com/citations?user=UZrjV1sAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Current Affiliation</h3>
+                    <p>Federal University of São Carlos</p>
+                    <p>Physics Graduate Program</p>
+                    <p>Quantum Computing Research Group</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; margin-top: 40px;">
+                <p>&copy; 2025 Bruno A. Veloso. All rights reserved.</p>
+            </div>
         </div>
-        <div class="progressBar">
-          <h4>Jquery</h4>
-          <div class="progressBarContainer">
-            <div class="progressBarValue value-30"></div>
-          </div>
-        </div>
-        <div class="progressBar">
-          <h4>WordPress</h4>
-          <div class="progressBarContainer">
-            <div class="progressBarValue value-70"></div>
-          </div>
-        </div>
-      </div>
-      <div class="four columns">
-        <p>Lorem ipsum dolor sit amet, enim soluta consectetur adipisicing elit. Sit, eius, itaque, porro, beatae impedit officia tenetur reiciendis in quia eum autem. Enim soluta consectetur adipisicing elit.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<!-- Portfolio Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->  
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-<section id="portfolio">
-  <div class="container">
-    <h1>Work</h1>
-    <div class="block"></div>
-    <div class="row">
-      <div class="three columns"> <img src="http://placehold.it/220x220" class="image" alt="Work One"/></div>
-      <div class="three columns"> <img src="http://placehold.it/220x220" class="image" alt="Work Two"/></div>
-      <div class="three columns"> <img src="http://placehold.it/220x220" class="image" alt="Work Three"/></div>
-      <div class="three columns"> <img src="http://placehold.it/220x220" class="image" alt="Work Four"/></div>
-    </div>
-    <div class="row" style="margin-top: 30px;">
-      <div class="three columns"> <img src="http://placehold.it/220x220" class="image" alt="Work Five"/></div>
-      <div class="three columns"> <img src="http://placehold.it/220x220" class="image" alt="Work Six"/></div>
-      <div class="three columns"> <img src="http://placehold.it/220x220" class="image" alt="Work Seven"/></div>
-      <div class="three columns"> <img src="http://placehold.it/220x220" class="image" alt="Work Eight"/></div>
-    </div>
-  </div>
-</section>
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-<!-- Testimonials Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->  
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillFills = entry.target.querySelectorAll('.skill-fill');
+                    skillFills.forEach(fill => {
+                        const width = fill.style.width;
+                        fill.style.width = '0%';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
 
-<section id="testimonial">
-  <div class="container">
-    <div class="quoteLoop">
-      <blockquote class="quote"> <img src="http://placehold.it/100x100" width="100" height="100" alt=""/>
-        <h5>&nbsp;<br>
-          &rdquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&rdquo;<br>
-          <small>Steve Bruce, Sed ut perspiciatis unde omnis</small></h5>
-      </blockquote>
-      <blockquote class="quote"> <img src="http://placehold.it/100x100" width="100" height="100" alt=""/>
-        <h5>&nbsp;<br>
-          &ldquo;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.&rdquo;<br>
-          <small>Tom Jones, Sed ut perspiciatis unde omnis</small></h5>
-      </blockquote>
-    </div>
-  </div>
-</section>
+        document.querySelectorAll('.skill-category').forEach(category => {
+            observer.observe(category);
+        });
 
-<!-- Contact Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->  
+        // Add fade-in animation to elements
+        const fadeElements = document.querySelectorAll('.timeline-content, .skill-category, .publication-item, .interest-card');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
 
-<section id="contact">
-  <div class="container">
-    <h1>Contact</h1>
-    <div class="block"></div>
-    <form>
-      <div class="row">
-        <div class="six columns">
-          <label for="exampleRecipientInput">Name</label>
-          <input class="u-full-width" type="text">
-        </div>
-        <div class="six columns">
-          <label for="exampleEmailInput">Email</label>
-          <input class="u-full-width" type="email">
-        </div>
-      </div>
-      <div class="row">
-        <label for="exampleMessage">Message</label>
-        <textarea class="u-full-width"></textarea>
-        <input class="button-primary" type="submit" value="Submit">
-      </div>
-    </form>
-  </div>
-</section>
+        fadeElements.forEach(element => {
+            fadeObserver.observe(element);
+        });
+    </script>
+    <script>
+    function toggleAbstract(id) {
+        const el = document.getElementById(id);
+        if (el.style.display === "none") {
+            el.style.display = "block";
+        } else {
+            el.style.display = "none";
+        }
+    }
+    </script>
 
-<!-- Footer Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->  
+    <script>
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-<footer>
-  <div class="container">
-    <div class="nine columns">
-      <p>&copy 2020 Bruno Augusto Veloso. Todos os direitos reservados</p>
-    </div>
-    <div class="three columns">
-      <span class="typcn typcn-social-facebook-circular socialIcons"></span>
-      <a href="https://www.instagram.com/bruno_avn/" class="typcn typcn-social-instagram-circular socialIcons"></a>
-      <a href="https://github.com/BrunoAVN" class="typcn typcn-social-github-circular socialIcons" title="GitHub"></a>
-      <a href="https://www.linkedin.com/in/bruno-augusto-veloso/" title="Linkedin" class="typcn typcn-social-linkedin-circular socialIcons"></a>
-    </div>
-  </div>
-</footer>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js'></script><script  src="./script.js"></script>
+    // Ativar ícones feather após carregar a página
+    window.addEventListener('DOMContentLoaded', () => {
+        feather.replace();
+    });
+    </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const particleCount = 20;
+    const header = document.querySelector('header');
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'quantum-particle';
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 6}s`;
+        header.appendChild(particle);
+    }
+});
+</script>
+<script>
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+</script>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backToTop');
+  if (window.scrollY > 300) {
+    btn.classList.add('show');
+  } else {
+    btn.classList.remove('show');
+  }
+});
+
+// Feather icons
+window.addEventListener('DOMContentLoaded', () => {
+  feather.replace();
+});
+</script>
+
 
 </body>
 </html>
