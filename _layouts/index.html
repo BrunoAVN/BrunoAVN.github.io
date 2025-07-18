@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2CTLSNZECR"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-2CTLSNZECR");
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bruno A. Veloso - Quantum Computing Researcher</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-bg"></div>
+      <div class="container">
+        <div class="hero">
+          <div class="hero-content">
+            <h1>Bruno A. Veloso</h1>
+            <p class="subtitle">Quantum Computing Researcher</p>
+            <p class="description">
+              Theoretical physicist specializing in quantum computation with
+              superconducting qubits. Currently pursuing a Ph.D. in Quantum
+              Computation at UFSCar, focusing on advanced quantum circuit design
+              and machine learning applications.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:brunoavn@df.ufscar.br">
+                <i data-feather="mail"></i>
+                Contact
+              </a>
+              <a
+                href="https://www.linkedin.com/in/bruno-augusto-veloso"
+                target="_blank"
+              >
+                <i data-feather="linkedin"></i>
+                LinkedIn
+              </a>
+              <a
+                href="https://scholar.google.com/citations?user=UZrjV1sAAAAJ&hl=en&oi=ao"
+                target="_blank"
+              >
+                <i data-feather="book-open"></i>
+                Scholar
+              </a>
+              <a href="https://github.com/brunoavn" target="_blank">
+                <i data-feather="github"></i>
+                Github
+              </a>
+            </div>
+          </div>
+          <div class="profile-image">
+            <img
+              src="assets/profile.jpg"
+              alt="Profile photo of Bruno A. Veloso"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+              "
+            />
+          </div>
+        </div>
+      </div>
+      <!-- Quantum particles animation -->
+      <div
+        class="quantum-particle"
+        style="left: 10%; animation-delay: 0s"
+      ></div>
+      <div
+        class="quantum-particle"
+        style="left: 20%; animation-delay: 2s"
+      ></div>
+      <div
+        class="quantum-particle"
+        style="left: 30%; animation-delay: 4s"
+      ></div>
+      <div
+        class="quantum-particle"
+        style="left: 80%; animation-delay: 1s"
+      ></div>
+      <div
+        class="quantum-particle"
+        style="left: 90%; animation-delay: 3s"
+      ></div>
+    </header>
+
+    <nav>
+      <div class="container">
+        <div class="nav-container">
+          <div class="nav-logo">Bruno A. Veloso</div>
+          <button class="menu-toggle" onclick="toggleMenu()">
+            <i data-feather="menu"></i>
+          </button>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="#education">Education</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#talks">Talks</a></li>
+            <li><a href="#interests">Interests</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <button id="backToTop" onclick="scrollToTop()" title="Voltar ao topo">
+      <i data-feather="chevron-up" class="feather feather-large"></i>
+    </button>
+    {{ content }} {% include footer.html %}
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Animate skill bars on scroll
+      const observerOptions = {
+        threshold: 0.5,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const skillFills = entry.target.querySelectorAll(".skill-fill");
+            skillFills.forEach((fill) => {
+              const width = fill.style.width;
+              fill.style.width = "0%";
+              setTimeout(() => {
+                fill.style.width = width;
+              }, 100);
+            });
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".skill-category").forEach((category) => {
+        observer.observe(category);
+      });
+
+      // Add fade-in animation to elements
+      const fadeElements = document.querySelectorAll(
+        ".timeline-content, .skill-category, .publication-item, .interest-card"
+      );
+
+      const fadeObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("fade-in");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      fadeElements.forEach((element) => {
+        fadeObserver.observe(element);
+      });
+    </script>
+    <script>
+      function toggleAbstract(id) {
+        const el = document.getElementById(id);
+        if (el.style.display === "none") {
+          el.style.display = "block";
+        } else {
+          el.style.display = "none";
+        }
+      }
+    </script>
+
+    <script>
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Ativar ícones feather após carregar a página
+      window.addEventListener("DOMContentLoaded", () => {
+        feather.replace();
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const particleCount = 20;
+        const header = document.querySelector("header");
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "quantum-particle";
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.animationDelay = `${Math.random() * 6}s`;
+          header.appendChild(particle);
+        }
+      });
+    </script>
+    <script>
+      function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("open");
+      }
+    </script>
+
+    <script>
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      window.addEventListener("scroll", () => {
+        const btn = document.getElementById("backToTop");
+        if (window.scrollY > 300) {
+          btn.classList.add("show");
+        } else {
+          btn.classList.remove("show");
+        }
+      });
+
+      // Feather icons
+      window.addEventListener("DOMContentLoaded", () => {
+        feather.replace();
+      });
+    </script>
+  </body>
+</html>
