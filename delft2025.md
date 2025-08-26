@@ -8,8 +8,8 @@ layout: default
 </a>
 
 <div class="poster-header">
-    <h1>Quantum Transistor in Superconducting Circuits</h1>
-    <p>SIFISC Conference - September 2021</p>
+    <h1>Building Block For Universal Continuous Variables Computation In Superconducting Devices</h1>
+    <p>SQA conference - August 2025</p>
 </div>
 
 <div class="poster-viewer">
