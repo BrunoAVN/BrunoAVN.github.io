@@ -231,6 +231,12 @@ We implement a conditional iSWAP gate using a superconducting artificial atom wi
 <h2 class="section-title">Talks & Presentations</h2>
 
 <div class="publication-item">
+    <h3>Introdução à Computação Quântica com Qiskit</h3>
+    <p><strong>Event:</strong> IEEE Chapter Minicourse</p>
+    <p><strong>Date:</strong> 10/10/2025 — USP São Carlos <a href="/usp_2025/index.html" target="_blank" style="color: var(--accent-red); text-decoration: none;">📄 View Work</a></p>
+</div>
+
+<div class="publication-item">
     <h3>Building Block for Universal Continuous Variables Computation in Superconducting Devices</h3>
     <p><strong>Event:</strong> <a href="https://abstracts.sqa-conference.org/?q=building+block+for+universal+continuous+variables+computation+in+superconducting+devices" target="_blank" style="color: var(--accent-red); text-decoration: none;">SQA Conference – Delft</a></p>
     <p><strong>Date:</strong> 2025 — Poster Session in Delft, Netherlands <a href="delft2025.html" target="_blank" style="color: var(--accent-red); text-decoration: none;">📄 View Work</a></p>
