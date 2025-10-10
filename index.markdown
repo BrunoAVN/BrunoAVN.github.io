@@ -233,7 +233,7 @@ We implement a conditional iSWAP gate using a superconducting artificial atom wi
 <div class="publication-item">
     <h3>Introdução à Computação Quântica com Qiskit</h3>
     <p><strong>Event:</strong> IEEE Chapter Minicourse</p>
-    <p><strong>Date:</strong> 10/10/2025 — USP São Carlos <a href="/usp_2025/index.html" target="_blank" style="color: var(--accent-red); text-decoration: none;">📄 View Work</a></p>
+    <p><strong>Date:</strong> 10/10/2025 — USP São Carlos <a href="/qiskit_course/index.html" target="_blank" style="color: var(--accent-red); text-decoration: none;">📄 View Work</a></p>
 </div>
 
 <div class="publication-item">
