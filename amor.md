@@ -2,6 +2,7 @@
 layout: default
 ---
 
+{% raw %}
 <style>
     * {
         margin: 0;
@@ -249,29 +250,23 @@ layout: default
         </div>
         <div class="error-message" id="errorMessage">Resposta incorreta. Tente novamente!</div>
     </div>
-
 </div>
 
 <div class="success-message" id="successMessage"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-{% raw %}
 <script>
-    // =============================================
-    // SISTEMA DE CRIPTOGRAFIA XOR
-    // =============================================
-    
     function xorEncrypt(text, key) {
         let result = '';
         for (let i = 0; i < text.length; i++) {
             result += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
         }
-        return btoa(result); // Converte para Base64
+        return btoa(result);
     }
 
     function xorDecrypt(encoded, key) {
         try {
-            const text = atob(encoded); // Decodifica Base64
+            const text = atob(encoded);
             let result = '';
             for (let i = 0; i < text.length; i++) {
                 result += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
@@ -282,23 +277,9 @@ layout: default
         }
     }
 
-    // =============================================
-    // CONTEÚDO CRIPTOGRAFADO
-    // =============================================
-    
-    // Para gerar o conteúdo criptografado, use:
-    // const mensagemOriginal = "Sua mensagem secreta aqui...";
-    // const chave = "azul"; // A resposta correta (normalizada)
-    // const criptografado = xorEncrypt(mensagemOriginal, chave);
-    // console.log(criptografado);
-    
-    // Exemplo: mensagem "Olá! Esta é uma mensagem secreta para você. ❤️" com chave "azul"
-    const encryptedContent = "Mg8UTAwfGx8AHRABQQkQDxMfAQ1BGwQZCFRbQg==";
+    // GERE SEU CONTEÚDO CRIPTOGRAFADO AQUI
+    const encryptedContent = "SUA_STRING_CRIPTOGRAFADA_AQUI";
 
-    // =============================================
-    // LÓGICA DE VERIFICAÇÃO
-    // =============================================
-    
     const answerInput = document.getElementById('answerInput');
     const submitBtn = document.getElementById('submitBtn');
     const errorMessage = document.getElementById('errorMessage');
@@ -306,6 +287,22 @@ layout: default
 
     function normalizeAnswer(answer) {
         return answer.toLowerCase().trim();
+    }
+
+    function isValidText(text) {
+        if (!text || text.length === 0) return false;
+        
+        let validChars = 0;
+        let totalChars = text.length;
+        
+        for (let i = 0; i < text.length; i++) {
+            const code = text.charCodeAt(i);
+            if ((code >= 32 && code <= 126) || code >= 160 || code === 10 || code === 13) {
+                validChars++;
+            }
+        }
+        
+        return (validChars / totalChars) >= 0.9;
     }
 
     function verifyAnswer() {
@@ -318,11 +315,9 @@ layout: default
 
         const decrypted = xorDecrypt(encryptedContent, userAnswer);
         
-        if (decrypted && decrypted.length > 0 && !decrypted.includes('�')) {
-            // Resposta correta!
+        if (decrypted && isValidText(decrypted)) {
             showSuccess(decrypted);
         } else {
-            // Resposta incorreta
             showError('Resposta incorreta. Tente novamente!');
             answerInput.value = '';
             answerInput.focus();
@@ -343,12 +338,9 @@ layout: default
     function showSuccess(content) {
         successMessage.innerHTML = content;
         successMessage.classList.add('show');
-        
-        // Esconde o formulário
         document.querySelector('.question-container').style.display = 'none';
     }
 
-    // Event listeners
     submitBtn.addEventListener('click', verifyAnswer);
     answerInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -356,6 +348,7 @@ layout: default
         }
     });
 
+    // THREE.JS
     const container = document.getElementById('canvas-container');
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
@@ -433,7 +426,7 @@ layout: default
         time += 0.016;
 
         if (assembling && time < 2) {
-            pieces.forEach((piece, i) => {
+            pieces.forEach((piece) => {
                 piece.material.opacity = Math.min(time / 0.5, 1);
                 const progress = Math.min(time / 2, 1);
                 const eased = 1 - Math.pow(1 - progress, 3);
