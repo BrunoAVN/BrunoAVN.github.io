@@ -255,6 +255,7 @@ layout: default
 <div class="success-message" id="successMessage"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+{% raw %}
 <script>
     // =============================================
     // SISTEMA DE CRIPTOGRAFIA XOR
@@ -480,3 +481,4 @@ layout: default
         renderer.setSize(container.clientWidth, container.clientHeight);
     });
 </script>
+{% endraw %}
