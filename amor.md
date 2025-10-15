@@ -31,10 +31,10 @@ title: Mensagem Especial
 
     .title {
         color: white;
-        font-size: 3.5rem;
+        font-size: 2.5rem;
         font-weight: 700;
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         opacity: 0;
         animation: fadeInDown 1s ease-out 0.5s forwards;
@@ -44,7 +44,7 @@ title: Mensagem Especial
         color: rgba(255, 255, 255, 0.9);
         font-size: 1.5rem;
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         opacity: 0;
         animation: fadeInUp 1s ease-out 0.8s forwards;
