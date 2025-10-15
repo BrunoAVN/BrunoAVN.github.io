@@ -1,5 +1,6 @@
 ---
-layout: default
+layout: blank
+title: Mensagem Especial
 ---
 
 {% raw %}
@@ -236,19 +237,19 @@ layout: default
     }
 </style>
 
-
-<h1 class="title">Espero que tenha gostado da surpresa</h1>
-<p class="subtitle">Mas, ainda não acabou. Tem mais o que gostaria de te dizer, mas pensei em... ser mais discreto :)</p>
-
-<div id="canvas-container"></div>
-
-<div class="question-container">
-    <p class="question-text">Por isso, antes de continuarmos me responda: Qual a senha?</p>
-    <div class="input-group">
-        <input type="text" class="answer-input" id="answerInput" placeholder="Digite sua resposta...">
-        <button class="submit-btn" id="submitBtn">Verificar</button>
-    </div>
-    <div class="error-message" id="errorMessage">Resposta incorreta. Tente novamente!</div>
+<div class="container">
+    <h1 class="title">Espero que tenha gostado da surpresa</h1>
+    <p class="subtitle">Mas, ainda não acabou. Tem mais o que gostaria de te dizer, mas pensei em... ser mais discreto :)</p>
+    <div id="canvas-container"></div>
+        <div class="question-container">
+            <p class="question-text">Por isso, antes de continuarmos me responda: Qual a senha?</p>
+            <div class="input-group">
+                <input type="text" class="answer-input" id="answerInput" placeholder="Digite sua resposta...">
+                <button class="submit-btn" id="submitBtn">Verificar</button>
+            </div>
+            <div class="error-message" id="errorMessage">Resposta incorreta. Tente novamente!</div>
+        </div>  
+    </div> 
 </div>
 
 <div class="success-message" id="successMessage"></div>
